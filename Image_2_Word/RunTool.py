@@ -32,14 +32,14 @@ def Get_Word(args):
             if len(args.image_name) == 0:
                 jpg_ima = Image.open(m_images[i])  # 打开图片
                 jpg_ima.save(m_images[i])  # 保存新的图片
-                m_doc.add_picture(m_images[i], width=Inches(args.image_width))  # 添加图，设置宽度
+                m_doc.add_picture(m_images[i], width=Inches(args.images_width))  # 添加图，设置宽度
                 pass
             else:
                 str_name = args.image_name + "_" + str(i + 1)
                 m_doc.add_paragraph(str_name)  # 添加文字
                 jpg_ima = Image.open(m_images[i])  # 打开图片
                 jpg_ima.save(m_images[i])  # 保存新的图片
-                m_doc.add_picture(m_images[i], width=Inches(args.image_width))  # 添加图，设置宽度
+                m_doc.add_picture(m_images[i], width=Inches(args.images_width))  # 添加图，设置宽度
                 pass
             pass
         # jpg_ima = Image, open(m_images)  # 打开图片
@@ -79,7 +79,7 @@ if __name__=='__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--images_path', type=str, default='./data',required=True, help='图片文件夹地址')
     parser.add_argument('--image_name', type=str, default='',required=False, help='图片名称')
-    parser.add_argument('--image_width', type=int, default=4,required=False, help='图片高度')
+    parser.add_argument('--images_width', type=int, default=4,required=False, help='图片高度')
     parser.add_argument('--word_path', type=str, default='./test.docx',required=False, help='word文件地址')
     args = parser.parse_args()
     main(args)
