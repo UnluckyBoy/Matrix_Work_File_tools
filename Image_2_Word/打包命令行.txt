@@ -1,0 +1,1 @@
+pyinstaller -i E:\MatrixProject\Matrix_Work_tools\Image_2_Word\2.ico -F E:\MatrixProject\Matrix_Work_tools\Image_2_Word\RunTool.py
