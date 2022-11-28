@@ -16,14 +16,15 @@ def Get_Word(args):
     m_doc=Document()
     try:
         for i in range(len(m_images)):
-            if len(args.image_name) == 0:
-                m_doc.add_picture(m_images[i], width=Inches(args.image_width))  # 添加图，设置宽度
-                pass
-            else:
-                str_name = args.image_name + "_" + str(i + 1)
-                m_doc.add_paragraph(str_name)  # 添加文字
-                m_doc.add_picture(m_images[i], width=Inches(args.image_width))  # 添加图，设置宽度
-                pass
+            m_doc.add_picture(m_images[i], width=Inches(args.image_width))  # 添加图，设置宽度
+            # if len(args.image_name) == 0:
+            #     m_doc.add_picture(m_images[i], width=Inches(args.image_width))  # 添加图，设置宽度
+            #     pass
+            # else:
+            #     str_name = args.image_name + "_" + str(i + 1)
+            #     m_doc.add_paragraph(str_name)  # 添加文字
+            #     m_doc.add_picture(m_images[i], width=Inches(args.image_width))  # 添加图，设置宽度
+            #     pass
             pass
         # m_doc.add_picture(m_images, width=Inches(args.image_width))  # 添加图，设置宽度
         pass
