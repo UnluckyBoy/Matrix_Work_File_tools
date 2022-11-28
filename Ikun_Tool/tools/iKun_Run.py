@@ -58,8 +58,8 @@ class MainWidgets(QtWidgets.QWidget):
                                 QtWidgets.QMessageBox.StandardButton.Yes)
 
     # 弹出提示
-    def open_qq_group(self):
-        QtGui.QDesktopServices.openUrl(QtCore.QUrl('https://jq.qq.com/?_wv=1027&k=A1DK3FhW'))
+    def open_auth_group(self):
+        QtGui.QDesktopServices.openUrl(QtCore.QUrl('https://github.com/ShenYuhan/python-tools'))
 
     # 松开键盘时
     def on_release(self, key):
@@ -183,15 +183,15 @@ class MainWidgets(QtWidgets.QWidget):
         # 托盘
         mini_icon = QtWidgets.QSystemTrayIcon(self)
         mini_icon.setIcon(QtGui.QIcon(resource_path(os.path.join("imgs", "cai2.png"))))
-        mini_icon.setToolTip("坤音键盘-iKun专属")
+        mini_icon.setToolTip("坤音键盘-iKun专属_By清风魔改搬运")
         # 为托盘增加一个菜单选项
         tpMenu = QtWidgets.QMenu(self) 
         # 为菜单指定一个选项
 
         # version_menu =  QtWidgets.QAction('作者', self, triggered=self.version_content)
         # tpMenu.addAction(version_menu)
-        # quit_menu_qq = QtWidgets.QAction('QQ群', self, triggered=self.open_qq_group)
-        # tpMenu.addAction(quit_menu_qq)
+        quit_menu_Auth = QtWidgets.QAction('QQ群', self, triggered=self.open_auth_group)
+        tpMenu.addAction(quit_menu_Auth)
         quit_menu = QtWidgets.QAction('退出', self, triggered=self.quit)
         tpMenu.addAction(quit_menu)
 
