@@ -5,4 +5,4 @@ pyinstaller -F xxx.py -p 随从.py --add-data="SetDpi.exe;." --add-binary="DmReg
 动态链接库dll等 使用 --add-binary="xx文件;xx文件夹"
 不设置文件夹的话 同样是用.代替，引号内用分号隔开
 
-pyinstaller -i E:\MatrixProject\Matrix_Work_tools\Ikun_Tool\tools\imgs\kun_keyboard.ico -F E:\MatrixProject\Matrix_Work_tools\IKun_Tool\tools\iKun_Run.py E:\MatrixProject\Matrix_Work_tools\IKun_Tool\tools\KeyWord_Monitor.py --add-data="E:\MatrixProject\Matrix_Work_tools\Ikun_Tool\tools;."
+pyinstaller -i E:\MatrixProject\Matrix_Work_tools\Ikun_Tool\tools\imgs\kun_keyboard.ico -F -w E:\MatrixProject\Matrix_Work_tools\IKun_Tool\tools\iKun_Run.py E:\MatrixProject\Matrix_Work_tools\IKun_Tool\tools\KeyWord_Monitor.py --add-data="E:\MatrixProject\Matrix_Work_tools\Ikun_Tool\tools;."
