@@ -3,7 +3,7 @@ import functools
 import sys
 import os
 from PyQt5 import QtGui, QtWidgets, QtCore
-import monitor
+import KeyWord_Monitor
 from pynput.keyboard import Key
 import playsound
 import threading
@@ -82,7 +82,7 @@ class MainWidgets(QtWidgets.QWidget):
             "<ctrl>+j": functools.partial(self.play_radio, path=self.ch2audio["jntm"])
             # "<ctrl>+j": self.play_ngm
         }
-        self.monitor = monitor.KeyBoardLister(on_press_func=self.on_press, on_release_func=self.on_release, hot_keys_func_map=hot_keys_func_map)
+        self.monitor = KeyWord_Monitor.KeyBoardLister(on_press_func=self.on_press, on_release_func=self.on_release, hot_keys_func_map=hot_keys_func_map)
     
     def windowinit(self):
         # 初始窗口设置大一点以免放入的图片显示不全
@@ -183,7 +183,7 @@ class MainWidgets(QtWidgets.QWidget):
         # 托盘
         mini_icon = QtWidgets.QSystemTrayIcon(self)
         mini_icon.setIcon(QtGui.QIcon(resource_path(os.path.join("imgs", "cai2.png"))))
-        mini_icon.setToolTip("坤音键盘-by 走神的阿圆")
+        mini_icon.setToolTip("坤音键盘-iKun专属")
         # 为托盘增加一个菜单选项
         tpMenu = QtWidgets.QMenu(self) 
         # 为菜单指定一个选项
