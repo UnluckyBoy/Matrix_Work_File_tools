@@ -190,7 +190,7 @@ class MainWidgets(QtWidgets.QWidget):
 
         # version_menu =  QtWidgets.QAction('作者', self, triggered=self.version_content)
         # tpMenu.addAction(version_menu)
-        quit_menu_Auth = QtWidgets.QAction('QQ群', self, triggered=self.open_auth_group)
+        quit_menu_Auth = QtWidgets.QAction('作者', self, triggered=self.open_auth_group)
         tpMenu.addAction(quit_menu_Auth)
         quit_menu = QtWidgets.QAction('退出', self, triggered=self.quit)
         tpMenu.addAction(quit_menu)
