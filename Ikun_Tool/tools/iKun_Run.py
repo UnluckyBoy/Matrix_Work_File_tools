@@ -183,7 +183,7 @@ class MainWidgets(QtWidgets.QWidget):
         # 托盘
         mini_icon = QtWidgets.QSystemTrayIcon(self)
         mini_icon.setIcon(QtGui.QIcon(resource_path(os.path.join("imgs", "cai2.png"))))
-        mini_icon.setToolTip("坤音键盘-iKun专属_By清风魔改搬运")
+        mini_icon.setToolTip("坤音键盘-iKun专属")
         # 为托盘增加一个菜单选项
         tpMenu = QtWidgets.QMenu(self) 
         # 为菜单指定一个选项
