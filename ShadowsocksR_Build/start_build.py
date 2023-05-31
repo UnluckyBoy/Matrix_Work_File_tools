@@ -15,12 +15,12 @@ from PIL import Image
 def build_ssr():
     ##SSR配置
     ##"$(get_ip):${shadowsocksport}:${shadowsockprotocol}:${shadowsockscipher}:${shadowsockobfs}:${shadowsockspwd}/?obfsparam="
-    server_ip='153.92.4.237'
-    server_port=(9889).__str__()
+    server_ip='77.243.85.94'
+    server_port=(9888).__str__()
     protocol = 'origin'
     method = 'aes-256-cfb'
     obfs = 'plain'
-    password=base64.urlsafe_b64encode(('back_use_vpn').encode(encoding="utf-8")).decode().replace('=','')#密码加密
+    password=base64.urlsafe_b64encode(('Yangxian_vpn').encode(encoding="utf-8")).decode().replace('=','')#密码加密
     obfsparam=''
 
     ##SSR参数
