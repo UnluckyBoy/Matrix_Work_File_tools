@@ -10,19 +10,15 @@ import requests
 from bs4 import BeautifulSoup
 
 def get_data():
-    url = 'http://quote.eastmoney.com/stocklist.html'
+
+    url='https://www.jaxhjzx.com/xcplay/58121-3-40.html'
+    # url = 'https://mooc1.chaoxing.com/mooc2/work/view?courseId=207331970&classId=75435216&cpi=206522217&workId=27381183&answerId=51772214&enc=dcb3c89b7e0210d9a8b8126f1186f2dc'
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
     response = requests.get(url, headers=headers)
-    response.encoding = 'gbk'
 
     soup = BeautifulSoup(response.text, 'html.parser')
-    stock_list = soup.find('div', {'id': 'quotesearch'}).find_all('a')
-
-    for stock in stock_list:
-        code = stock['href'].split('/')[-1].split('.')[0]
-        name = stock.text
-        print(code, name)
+    print(soup)
     pass
 
 def main(args):
