@@ -6,8 +6,9 @@
 # @Software: PyCharm
 # ---************************************************---
 import argparse
-import urllib.request
+import requests
 import json
+import gradio as gr
 
 
 def get_head_url(config_path,key):
@@ -37,33 +38,45 @@ def get_url(url_path,file_name):
     pass
 
 
-def get_download(head_url, url_list,save_path,file_name):
+def get_download(args,head_url,url_list,save_path,file_name):
     """#下载文件"""
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
     for index in range(len(url_list)):
         url = head_url+url_list[index]
         # print("文件url", url)
-        file_path=save_path+file_name+str(index)+'.mp3'
+        file_path=save_path+file_name+str(index+1)+'.mp3'
         print("下载url:", url)
-        urllib.request.urlretrieve(url, file_path)
+        response = requests.get(url, stream=True)
+        # 检查响应状态码
+        if response.status_code == 200:
+            write_file(file_path,response)
+        else:
+            #print("下载失败，状态码：", response.status_code)
+            url=get_head_url(args.json_path,file_name+"_backups")+url_list[index]
+            response_backups = requests.get(url, stream=True)
+            write_file(file_path, response_backups)
         pass
-    # save_path = 'path/to/save/file.txt'  # 要保存的文件路径
-    # urllib.request.urlretrieve(url, save_path)
-    # print("文件已下载并保存到", save_path)
     pass
 
+def write_file(file_path,response):
+    """#写入文件"""
+    with open(file_path, 'wb') as file:
+        for chunk in response.iter_content(chunk_size=1024):
+            file.write(chunk)
+    print("文件已下载并保存到", file_path)
+    pass
 
 def main(args):
     # hutao_head_url = 'https://uploadstatic.mihoyo.com/ys-obc/2022/05/12/4521515/'  # 下载头url
     # sanbing_head_url='https://uploadstatic.mihoyo.com/ys-obc/2022/12/07/16576950/'
 
-    file_name = 'sanbing'  # 文件名***很重要,此对象决定下载的内容、名称等***
+    # iface = gr.Interface(fn=get_test,inputs='text', outputs='text')
+    # iface.launch(share=True, server_port=9999)
 
+    file_name = 'huanglongyidou'  # 文件名***很重要,此对象决定下载的内容、名称等***
     head_url=get_head_url(args.json_path,file_name)
     url_list = get_url(args.url_path,file_name)
     # print(url_list)
-    get_download(head_url,url_list,args.download_path,file_name)
+    get_download(args,head_url,url_list,args.download_path,file_name)
     print("！！！文件已下载完成！！！")
     pass
 
