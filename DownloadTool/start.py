@@ -72,7 +72,7 @@ def main(args):
     # iface = gr.Interface(fn=get_test,inputs='text', outputs='text')
     # iface.launch(share=True, server_port=9999)
 
-    file_name = 'huanglongyidou'  # 文件名***很重要,此对象决定下载的内容、名称等***
+    file_name = 'zhongli'  # 文件名***很重要,此对象决定下载的内容、名称等***
     head_url=get_head_url(args.json_path,file_name)
     url_list = get_url(args.url_path,file_name)
     # print(url_list)
