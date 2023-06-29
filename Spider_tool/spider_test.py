@@ -8,26 +8,32 @@
 import argparse
 import requests
 from bs4 import BeautifulSoup
-
-def get_data():
-
-    url='https://www.jaxhjzx.com/xcplay/58121-3-40.html'
-    # url = 'https://mooc1.chaoxing.com/mooc2/work/view?courseId=207331970&classId=75435216&cpi=206522217&workId=27381183&answerId=51772214&enc=dcb3c89b7e0210d9a8b8126f1186f2dc'
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
-    response = requests.get(url, headers=headers)
-
-    soup = BeautifulSoup(response.text, 'html.parser')
-    print(soup)
-    pass
-
-def main(args):
-    get_data()
-    pass
+import json
+import base64
+import requests
 
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--file_path', type=str, default='./xxx/xxx', help='文件地址')
-    args = parser.parse_args()
-    main(args)
+def submit_post(url: str, data: dict):
+    return requests.post(url, data=json.dumps(data))
+
+
+def save_encoded_image(b64_image: str, output_path: str):
+    with open(output_path, 'wb') as image_file:
+        image_file.write(base64.b64decode(b64_image))
+
+
+if __name__ == '__main__':
+    txt2img_url = r'http://127.0.0.1:7980/sdapi/v1/txt2img'
+    data = {'prompt': 'a dog wearing a hat',
+            'negative_prompt': '',
+            'sampler_index': 'DPM++ SDE',
+            'seed': 1234,
+            'steps': 20,
+            'width': 512,
+            'height': 512,
+            'cfg_scale': 8}
+
+    response = submit_post(txt2img_url, data)
+    save_image_path = r'tmp.png'
+    # save_encoded_image(response.json()['images'][0], save_image_path)
+    print(str(response.json()))
