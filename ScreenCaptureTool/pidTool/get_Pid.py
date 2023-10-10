@@ -61,9 +61,9 @@ def get_process(process_name,return_value):
 def main(args):
     # list_processes()
 
-    temp=get_process('AppMarket.exe','pid')
+    temp=get_process('Genshin Impact Cloud Game.exe','pid')
     print(temp)
-    get_screen(temp)
+    get_screen()
 
     # game_process=GameProcess('AppMarket.exe')
     # move_mouse(900, 500)
