@@ -48,6 +48,9 @@ def get_process(process_name,return_value):
                     case 'status':
                         return process_info['status']
                         break
+                    case 'window':
+                        return process.info['window']
+                        break
                     case _:
                         return process_info['pid']
                         break
@@ -55,23 +58,3 @@ def get_process(process_name,return_value):
         except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
             pass
     pass
-    pass
-
-
-def main(args):
-    # list_processes()
-
-    temp=get_process('Genshin Impact Cloud Game.exe','pid')
-    print(temp)
-    get_screen()
-
-    # game_process=GameProcess('AppMarket.exe')
-    # move_mouse(900, 500)
-    pass
-
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    # parser.add_argument('--file_path', type=str, default='./xxx/xxx', help='文件地址')
-    args = parser.parse_args()
-    main(args)

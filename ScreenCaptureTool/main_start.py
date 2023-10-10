@@ -7,11 +7,14 @@
 # ---************************************************---
 import argparse
 
-from ScreenCaptureTool.screenTool.screenTools import get_screen
+from ScreenCaptureTool.pidTool.get_Pid import *
+from ScreenCaptureTool.screenTool.screenTools import *
 
 
 def main(args):
-    get_screen()
+    # get_process("Genshin Impact Cloud Game.exe",'window')
+    # get_screen_2()
+    get_screen_video()
     pass
 
 
