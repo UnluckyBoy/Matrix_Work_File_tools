@@ -83,9 +83,9 @@ def get_screen_video():
         width = right - left
         height = bottom - top
         current_time = datetime.datetime.now().timestamp()
-        file_name=datetime.datetime.fromtimestamp(current_time).strftime('%Y%m%d-%H-%M-%S')
+        file_name = datetime.datetime.fromtimestamp(current_time).strftime('%Y%m%d-%H-%M-%S')
         print(file_name)
-        save_name='./data/'+file_name+'-Capture.mp4'
+        save_name = './data/' + file_name + '-Capture.mp4'
         print(save_name)
 
         # 创建VideoWriter对象以保存视频
@@ -110,15 +110,25 @@ def get_screen_video():
         print(f"找不到标题为'{window_title}'的窗口")
     pass
 
-    # windows = gw.getAllWindows()
-    # for window in windows:
-    #     hwnd = win32gui.FindWindow(None, window.title)
-    #     if hwnd:
-    #         # 获取窗口的进程ID（PID）
-    #         pid = win32process.GetWindowThreadProcessId(hwnd)[1]
-    #         print(f"窗口标题为'{window.title}'的窗口句柄为: {hwnd}")
-    #         print(f"对应的进程ID (PID) 为: {pid}")
-    #     else:
-    #         print(f"找不到标题为'{window.title}'的窗口")
-    #     pass
+
+pass
+
+
+def get_process():
+    result_list = []
+    windows = gw.getAllWindows()
+    for window in windows:
+        if window.title != "":
+            hwnd = win32gui.FindWindow(None, window.title)
+            if hwnd:
+                # 获取窗口的进程ID（PID）
+                pid = win32process.GetWindowThreadProcessId(hwnd)[1]
+                # print(f"窗口标题为'{window.title}'的窗口句柄为: {hwnd}")
+                # print(f"对应的进程ID (PID) 为: {pid}")
+                result_list.append(window.title)
+            else:
+                print(f"找不到标题为'{window.title}'的窗口")
+            pass
+        pass
+    return result_list
     pass
