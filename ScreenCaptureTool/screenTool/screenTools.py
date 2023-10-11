@@ -58,9 +58,9 @@ def get_screen_2():
 ###############截屏模块#################
 
 
-def get_screen_video():
+def get_screen_video(window_title):
     # 替换为您要获取的窗口的标题
-    window_title = '云·原神'
+    # window_title = '云·原神'
     # 查找窗口句柄
     hwnd = win32gui.FindWindow(None, window_title)
     if hwnd:
