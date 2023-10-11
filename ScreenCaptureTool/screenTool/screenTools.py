@@ -75,29 +75,32 @@ def get_screen_video():
 
         # 延迟1s录制
         time.sleep(1)
-        # 获取窗口的尺寸
-        left, top, right, bottom = win32gui.GetClientRect(hwnd)
+        # 获取窗口的尺寸(相对于窗口)
+        # client_left, client_top, client_right, client_bottom = win32gui.GetClientRect(hwnd)
+        left, top, right, bottom = win32gui.GetWindowRect(hwnd)  # 这些值包含了整个窗口的位置信息
         # 视频帧数
         frame_rate = 30.0
         width = right - left
         height = bottom - top
         current_time = datetime.datetime.now().timestamp()
         file_name=datetime.datetime.fromtimestamp(current_time).strftime('%Y%m%d-%H-%M-%S')
-        # print(file_name)
+        print(file_name)
         save_name='./data/'+file_name+'-Capture.mp4'
+        print(save_name)
 
         # 创建VideoWriter对象以保存视频
         fourcc = cv2.VideoWriter_fourcc(*'h264')  # avi格式:XVID;mp4格式:mp4v,h264
         out = cv2.VideoWriter(save_name, fourcc, frame_rate, (width, height))
         while True:
             # 使用pyautogui截图窗口内容
-            screenshot = pyautogui.screenshot(region=(left, top, right, bottom))
+            # screenshot = pyautogui.screenshot(region=(left, top, right, bottom))
+            screenshot = pyautogui.screenshot(region=(left, top, width, height))
             # 将截图转换为OpenCV格式
             frame = numpy.array(screenshot)
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             # 写入视频
             out.write(frame)
-            cv2.imshow("MatrixCapture", frame)# 窗口标题
+            cv2.imshow("MatrixCapture", frame)  # 窗口标题
             if cv2.waitKey(10) & 0xFF == ord('q'):
                 break
         out.release()
