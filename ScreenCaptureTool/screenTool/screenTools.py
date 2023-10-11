@@ -7,19 +7,14 @@
 # ---************************************************---
 import pygetwindow as gw
 import pyautogui
-import win32gui
-import win32con
-import ctypes
-import time
 import cv2
-import numpy as np
+import numpy
+import win32con
+import win32gui
 import win32process
 import win32ui
 import psutil
 import time
-import pywinauto
-import ctypes
-from PIL import ImageGrab
 
 
 def get_screen():
@@ -64,25 +59,42 @@ def get_screen_video():
     # 替换为您要获取的窗口的标题
     window_title = '云·原神'
     # 查找窗口句柄
-    window_handle = win32gui.FindWindow(None, window_title)
-    if window_handle:
+    hwnd = win32gui.FindWindow(None, window_title)
+    if hwnd:
         # 获取窗口的进程ID（PID）
-        pid = win32process.GetWindowThreadProcessId(window_handle)[1]
-        print(f"窗口标题为'{window_title}'的窗口句柄为: {window_handle}")
+        pid = win32process.GetWindowThreadProcessId(hwnd)[1]
+        print(f"窗口标题为'{window_title}'的窗口句柄为: {hwnd}")
         print(f"对应的进程ID (PID) 为: {pid}")
+
+        # 激活窗口
+        win32gui.ShowWindow(hwnd, win32con.SW_RESTORE)
+        win32gui.SetForegroundWindow(hwnd)
+        time.sleep(1)
+        # 获取窗口的尺寸
+        left, top, right, bottom = win32gui.GetClientRect(hwnd)
+        frame_rate = 30.0
+        width = right - left
+        height = bottom - top
+        # 创建VideoWriter对象以保存视频
+        fourcc = cv2.VideoWriter_fourcc(*'h264')  # avi格式:XVID;mp4格式:mp4v,h264
+        out = cv2.VideoWriter('./data/output.mp4', fourcc, frame_rate, (width, height))
+        while True:
+            # 使用pyautogui截图窗口内容
+            screenshot = pyautogui.screenshot(region=(left, top, right, bottom))
+            # 将截图转换为OpenCV格式
+            frame = numpy.array(screenshot)
+            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            # 写入视频
+            out.write(frame)
+            cv2.imshow("Window Recording", frame)
+            if cv2.waitKey(10) & 0xFF == ord('q'):
+                break
+        out.release()
+        cv2.destroyAllWindows()
+
     else:
         print(f"找不到标题为'{window_title}'的窗口")
     pass
-
-    # 激活窗口
-    win32gui.ShowWindow(window_handle, win32con.SW_RESTORE)
-    win32gui.SetForegroundWindow(window_handle)
-    time.sleep(1)
-
-    width, height = psutil.win32gui.GetWindowRect(window_handle)[2:4]
-    img = ImageGrab.grab(bbox=(0, 0, width, height))
-    img.save('./data/screenshot.png')
-
 
     # windows = gw.getAllWindows()
     # for window in windows:
