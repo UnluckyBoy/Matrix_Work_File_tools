@@ -12,11 +12,11 @@ import numpy
 import win32con
 import win32gui
 import win32process
-import win32ui
-import psutil
 import time
+import datetime
 
 
+###############截屏模块#################
 def get_screen():
     windows = gw.getAllWindows()
     for window in windows:
@@ -55,6 +55,9 @@ def get_screen_2():
     pass
 
 
+###############截屏模块#################
+
+
 def get_screen_video():
     # 替换为您要获取的窗口的标题
     window_title = '云·原神'
@@ -69,15 +72,23 @@ def get_screen_video():
         # 激活窗口
         win32gui.ShowWindow(hwnd, win32con.SW_RESTORE)
         win32gui.SetForegroundWindow(hwnd)
+
+        # 延迟1s录制
         time.sleep(1)
         # 获取窗口的尺寸
         left, top, right, bottom = win32gui.GetClientRect(hwnd)
+        # 视频帧数
         frame_rate = 30.0
         width = right - left
         height = bottom - top
+        current_time = datetime.datetime.now().timestamp()
+        file_name=datetime.datetime.fromtimestamp(current_time).strftime('%Y%m%d-%H-%M-%S')
+        # print(file_name)
+        save_name='./data/'+file_name+'-Capture.mp4'
+
         # 创建VideoWriter对象以保存视频
         fourcc = cv2.VideoWriter_fourcc(*'h264')  # avi格式:XVID;mp4格式:mp4v,h264
-        out = cv2.VideoWriter('./data/output.mp4', fourcc, frame_rate, (width, height))
+        out = cv2.VideoWriter(save_name, fourcc, frame_rate, (width, height))
         while True:
             # 使用pyautogui截图窗口内容
             screenshot = pyautogui.screenshot(region=(left, top, right, bottom))
@@ -86,7 +97,7 @@ def get_screen_video():
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             # 写入视频
             out.write(frame)
-            cv2.imshow("Window Recording", frame)
+            cv2.imshow("MatrixCapture", frame)# 窗口标题
             if cv2.waitKey(10) & 0xFF == ord('q'):
                 break
         out.release()
