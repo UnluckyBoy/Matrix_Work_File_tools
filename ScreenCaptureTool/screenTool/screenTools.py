@@ -114,7 +114,7 @@ def get_screen_video(window_title):
 pass
 
 
-def get_process():
+def get_all_process():
     result_list = []
     windows = gw.getAllWindows()
     for window in windows:

@@ -75,7 +75,7 @@ class CaptureWindow(QMainWindow):
         # 定义按钮的点击事件,并向下拉菜单中添加选项
         def on_button_click():
             process_combo_box.clear()
-            process = get_process()
+            process = get_all_process()
             for temp_list in process:
                 process_combo_box.addItem(temp_list)
                 pass
