@@ -87,6 +87,7 @@ def get_screen_video(window_title):
         print(file_name)
         save_name = './data/' + file_name + '-Capture.mp4'
         print(save_name)
+        start_time=time.time()
 
         # 创建VideoWriter对象以保存视频
         fourcc = cv2.VideoWriter_fourcc(*'h264')  # avi格式:XVID;mp4格式:mp4v,h264
@@ -100,11 +101,14 @@ def get_screen_video(window_title):
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             # 写入视频
             out.write(frame)
-            cv2.imshow("MatrixCapture", frame)  # 窗口标题
-            if cv2.waitKey(10) & 0xFF == ord('q'):
+            # cv2.imshow("MatrixCapture", frame)  # 窗口标题
+            # if cv2.waitKey(10) & 0xFF == ord('q'):
+            #     break
+            if time.time()-start_time>10:
+                print("录制结束")
                 break
         out.release()
-        cv2.destroyAllWindows()
+        # cv2.destroyAllWindows()
 
     else:
         print(f"找不到标题为'{window_title}'的窗口")

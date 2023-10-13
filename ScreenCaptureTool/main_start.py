@@ -15,13 +15,9 @@ from ScreenCaptureTool.ui.main_window import ScreenRecorderMainUi
 
 def main(args):
     # get_screen_video()
-    # app = QApplication(sys.argv)
+    app = QApplication(sys.argv)
     # window = CaptureWindow()
     # window.setFixedSize(1920, 1080)  # 设置窗口的宽度为 1920 像素，高度为 1080 像素
-    # window.show()
-    # sys.exit(app.exec_())
-
-    app = QApplication(sys.argv)
     window = ScreenRecorderMainUi(1920,1080)
     window.show()
     sys.exit(app.exec_())
