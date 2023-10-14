@@ -5,15 +5,10 @@
 # @File : get_Pid.py
 # @Software: PyCharm
 # ---************************************************---
-import argparse
 import psutil
-
-from ScreenCaptureTool.memeryTool.memeryTools import GameProcess
-from ScreenCaptureTool.mouseTool.mouseTools import *
 
 
 # 获取所有pid
-from ScreenCaptureTool.screenTool.screenTools import get_screen
 
 
 def list_processes():

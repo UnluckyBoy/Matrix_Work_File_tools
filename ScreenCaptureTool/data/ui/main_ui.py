@@ -5,14 +5,10 @@
 # @File : main_ui.py
 # @Software: PyCharm
 # ---************************************************---
-import argparse
-import sys
-from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import *
-from PyQt5.QtCore import Qt
 from functools import partial
 
-from ScreenCaptureTool.screenTool.screenTools import *
+from ScreenCaptureTool.data.screenTool.screenTools import *
 
 
 class CaptureWindow(QMainWindow):
