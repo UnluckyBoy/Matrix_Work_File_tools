@@ -272,7 +272,7 @@ class ScreenRecorderMainUi(QMainWindow):
     def icon_quit(self):
         # 托盘
         mini_icon = QtWidgets.QSystemTrayIcon(self)
-        mini_icon.setIcon(QtGui.QIcon(get_resource_path(os.path.join("resources", "head_icon.png"))))
+        mini_icon.setIcon(QtGui.QIcon(get_resource_path(os.path.join("data/resources", "head_icon.png"))))
         mini_icon.setToolTip("MatrixCapture")
         # 为托盘增加一个菜单选项
         tpMenu = QtWidgets.QMenu(self)

@@ -13,7 +13,7 @@ import re
 def get_weather_data():
 
     # 设置要爬取的城市和日期
-    city = "榕江"
+    city = "黔东南"
     date = "20230511"
     id="101260516"
     # 构造URL

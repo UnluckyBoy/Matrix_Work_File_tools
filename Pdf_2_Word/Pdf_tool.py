@@ -31,7 +31,7 @@ def main(args):
 
 if __name__=="__main__":
     parser=argparse.ArgumentParser()
-    parser.add_argument('--pdf_path',type=str,default='./data/123.pdf',help='pdf文件地址')
-    parser.add_argument('--word_path',type=str,default='./data/123.docx',help='word文件地址')
+    parser.add_argument('--pdf_path',type=str,default='./data/百度文库文档.pdf',help='pdf文件地址')
+    parser.add_argument('--word_path',type=str,default='./data/百度文库文档.docx',help='word文件地址')
     args=parser.parse_args()
     main(args)
